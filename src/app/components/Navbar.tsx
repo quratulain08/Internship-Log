@@ -1,9 +1,11 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation'; // Import useRouter hook
 import { FaBarsStaggered, FaXmark } from 'react-icons/fa6';
 
 const Navbar = () => {
+    const router = useRouter(); // Initialize router
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isSticky, setIsSticky] = useState(false);
     const [showSecondaryNav, setShowSecondaryNav] = useState(false);
@@ -16,7 +18,6 @@ const Navbar = () => {
 
     useEffect(() => {
         const handleScroll = () => {
-            console.log('scrollY:', window.scrollY); // Debugging line
             if (window.scrollY > 100) {
                 setIsSticky(true);
                 setShowSecondaryNav(true);
@@ -55,14 +56,18 @@ const Navbar = () => {
 
     const secondaryNavItems = [
         { link: "Home", path: "/" },
-        { link: "Faculty Supervisor", path: "/Faculty" },
-        { link: "Students", path: "/Student" },
-        { link: "DIC", path: "/DIC" },
-        { link: "AU/PO", path: "/PlacementOffice" },
+        { link: "faculty", path: "/Faculty" },
+        { link: "student", path: "/Student" },
+        { link: "dic", path: "/DIC" },
+        { link: "au-placement", path: "/PlacementOffice" },
         { link: "Organization", path: "/Organization" },
-        { link: "Site Supervisor", path: "/SiteSupervisor" }
+        { link: "site-supervisor", path: "/SiteSupervisor" }
     ];
 
+    // Handle role click and redirect to login with the role as a query parameter
+    const handleRoleClick = (role: string) => {
+        router.push(`/Login?role=${role}`);
+    };
 
     return (
         <>
@@ -138,11 +143,14 @@ const Navbar = () => {
                     <nav className="py-2 px-4 flex items-center justify-center">
                         <ul className="flex space-x-8">
                             {
-                                secondaryNavItems.map(({ link, path }) => (
-                                    <li key={path}>
-                                        <Link href={path} className='block text-sm text-gray-700 uppercase cursor-pointer hover:text-blue-500'>
+                                secondaryNavItems.map(({ link }) => (
+                                    <li key={link}>
+                                        <button
+                                            onClick={() => handleRoleClick(link)}
+                                            className='block text-sm text-gray-700 uppercase cursor-pointer hover:text-blue-500'
+                                        >
                                             {link}
-                                        </Link>
+                                        </button>
                                     </li>
                                 ))
                             }

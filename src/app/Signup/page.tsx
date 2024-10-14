@@ -104,6 +104,7 @@ const Signup: React.FC = () => {
               <option value='faculty'>Faculty</option>
               <option value='site-supervisor'>Site Supervisor</option>
               <option value='au-placement'>AU Placement</option>
+              <option value='Organization'>Organization</option>
               <option value='dic'>DIC</option>
             </select>
           </div>
