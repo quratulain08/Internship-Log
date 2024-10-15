@@ -1,13 +1,16 @@
 "use client";
 import React, { useState } from 'react';
-import { HiEye, HiChat, HiLogout, HiMenu, HiX } from 'react-icons/hi';
+import { HiEye, HiChat, HiLogout, HiMenu, HiX, HiUser } from 'react-icons/hi';
 import { useRouter } from 'next/navigation';
+import SiteSupervisor from '../components/Profile/SiteSupervisor';
+import GetSiteSupervisorProfile from '../components/Profile/GetSiteSupervisorProfile';
 import SiteSupervisorEvaluationForm from '../components/Forms/SiteSupervisorEvaluationForm'; // Import your form component
 
 const SiteSupervisorSidebar: React.FC = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false); 
+  const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
   const [showWelcomeMessage, setShowWelcomeMessage] = useState<boolean>(true);
   const [showEvaluationForm, setShowEvaluationForm] = useState<boolean>(false); // State to control form visibility
+  const [showProfile, setShowProfile] = useState<boolean>(false); // State to control profile visibility
 
   const router = useRouter();
 
@@ -19,11 +22,25 @@ const SiteSupervisorSidebar: React.FC = () => {
   const handleNavigation = (path: string) => {
     setShowWelcomeMessage(false);
     if (path === 'form') {
-      setShowEvaluationForm(true); // Show the evaluation form
+      setShowEvaluationForm(true);
+      setShowProfile(false);
+    } else if (path === 'profile') {
+      setShowProfile(true);
+      setShowEvaluationForm(false);
     } else {
-      setShowEvaluationForm(false); // Hide the form
-      router.push(path); // Navigate to the specified path
+      setShowEvaluationForm(false);
+      setShowProfile(false);
+      router.push(path);
     }
+  };
+
+  // Static data for site supervisor profile demonstration
+  const profileData = {
+    name: 'Jane Smith',
+    cnic: '12345-1234567-8',
+    qualification: 'Masters in Engineering',
+    organization: 'ABC University',
+    mobileNo: '0300-7654321',
   };
 
   return (
@@ -56,6 +73,15 @@ const SiteSupervisorSidebar: React.FC = () => {
           </li>
           <li>
             <button
+              onClick={() => handleNavigation('profile')}
+              className="flex items-center p-2 rounded hover:bg-blue-900 w-full text-left"
+            >
+              <HiUser className="mr-3 text-xl" />
+              <span>Profile</span>
+            </button>
+          </li>
+          <li>
+            <button
               onClick={handleLogout}
               className="flex items-center p-2 rounded hover:bg-blue-900 w-full text-left"
             >
@@ -84,10 +110,9 @@ const SiteSupervisorSidebar: React.FC = () => {
             </div>
           </div>
         )}
-        
+
         {showEvaluationForm && <SiteSupervisorEvaluationForm />} {/* Render the evaluation form when needed */}
-        
-        {/* Other content can go here if needed */}
+        {showProfile && <GetSiteSupervisorProfile profileData={profileData} />} {/* Pass the profile data as a prop */}
       </div>
     </div>
   );

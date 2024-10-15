@@ -130,7 +130,7 @@ const StudentSidebar: React.FC = () => {
               </div>
             </div>
           ) : (
-            <div>{activeComponent}</div> // Render the active component
+            <div>{activeComponent}</div> 
           )}
         </div>
       </div>

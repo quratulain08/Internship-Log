@@ -67,7 +67,7 @@ const StudentProfileForm: React.FC = () => {
       <div className="p-6 bg-[#b6c0c5] text-[#112d60] rounded-lg shadow-none max-w-full sm:max-w-4xl w-full">
         <h2 className="mb-8 text-2xl sm:text-3xl font-bold text-center">Student Profile</h2>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-          
+
           {/* Row for Name and Course */}
           <div className="flex gap-4">
             <div className="flex-1">
@@ -211,19 +211,13 @@ const StudentProfileForm: React.FC = () => {
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full py-2 px-4 bg-[#112d60] text-white rounded-md shadow-sm hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-900 mt-4"
+            className="py-1 px-2 bg-[#112d60] text-white rounded-full shadow-sm hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-900 mt-2 text-sm"
           >
             Submit
           </button>
+
         </form>
 
-        {/* Display submitted data */}
-        {submittedData && (
-          <div className="mt-6">
-            <h3 className="text-xl font-bold">Submitted Data</h3>
-            <pre>{JSON.stringify(submittedData, null, 2)}</pre>
-          </div>
-        )}
 
         {/* Display error message */}
         {error && <p className="text-red-500 mt-4">{error}</p>}
