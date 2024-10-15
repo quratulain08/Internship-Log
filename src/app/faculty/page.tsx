@@ -1,16 +1,17 @@
 "use client";
 import React, { useState } from 'react';
-import { HiPlus, HiViewList, HiDocumentReport, HiEye, HiStar, HiChat, HiLogout, HiMenu, HiX } from 'react-icons/hi';
+import { HiPlus, HiViewList, HiDocumentReport, HiEye, HiStar, HiChat, HiLogout, HiMenu, HiX,HiUser } from 'react-icons/hi';
 import { useRouter } from 'next/navigation'; 
 import Layout from '../components/Layout'; // Ensure the Layout component is imported
-import ProjectIntentionForm from '../components/Forms/ProjectIntentionForm'; // Import the component
+import ProjectIntentionForm from '../components/Forms/ProjectIntentionForm';
 import FacultySupervisorEvaluationForm from '../components/Forms/FacultySupervisorEvaluationForm';
 import GetStudentInternshipProgress from '../components/GetData/GetStudentInternshipProgress';
 import GetInternshipActivityLog from '../components/GetData/GetInternshipActivityLog';
 import GetSiteSupervisorEvaluationForm from '../components/GetData/GetSiteSupervisorEvaluationForm';
+
 import GetFacultyProfile from '../components/Profile/GetFacultyProfile'
 const Sidebar: React.FC = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false); // Sidebar starts closed on small screens
+  const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false); 
   const [showWelcomeMessage, setShowWelcomeMessage] = useState<boolean>(true);
   const [activeComponent, setActiveComponent] = useState<JSX.Element | null>(null); // State to handle active component
 
@@ -41,7 +42,7 @@ const Sidebar: React.FC = () => {
           <ul className="space-y-2">
             <li>
               <button
-                onClick={() => handleNavigation(<ProjectIntentionForm />)} // Render the ProjectIntentionForm component
+                onClick={() => handleNavigation(<ProjectIntentionForm />)} 
                 className="flex items-center p-2 rounded hover:bg-blue-900 w-full text-left"
               >
                 <HiPlus className="mr-3 text-xl" />
@@ -50,7 +51,7 @@ const Sidebar: React.FC = () => {
             </li>
             <li>
               <button
-                onClick={() => handleNavigation(<GetStudentInternshipProgress/>)} // Replace with actual component
+                onClick={() => handleNavigation(<GetStudentInternshipProgress/>)} 
                 className="flex items-center p-2 rounded hover:bg-blue-900 w-full text-left"
               >
                 <HiDocumentReport className="mr-3 text-xl" />
@@ -59,7 +60,7 @@ const Sidebar: React.FC = () => {
             </li>
             <li>
               <button
-                onClick={() => handleNavigation(<GetInternshipActivityLog/>)} // Replace with actual component
+                onClick={() => handleNavigation(<GetInternshipActivityLog/>)} 
                 className="flex items-center p-2 rounded hover:bg-blue-900 w-full text-left"
               >
                 <HiViewList className="mr-3 text-xl" />
@@ -68,7 +69,7 @@ const Sidebar: React.FC = () => {
             </li>
             <li>
   <button
-    onClick={() => handleNavigation(<FacultySupervisorEvaluationForm />)} // Pass the component as JSX element
+    onClick={() => handleNavigation(<FacultySupervisorEvaluationForm />)} 
     className="flex items-center p-2 rounded hover:bg-blue-900 w-full text-left"
   >
     <HiStar className="mr-3 text-xl" />
@@ -78,7 +79,7 @@ const Sidebar: React.FC = () => {
 
             <li>
               <button
-                onClick={() => handleNavigation(<GetSiteSupervisorEvaluationForm/>)} // Replace with actual component
+                onClick={() => handleNavigation(<GetSiteSupervisorEvaluationForm/>)} 
                 className="flex items-center p-2 rounded hover:bg-blue-900 w-full text-left"
               >
                 <HiEye className="mr-3 text-xl" />
@@ -87,11 +88,20 @@ const Sidebar: React.FC = () => {
             </li>
             <li>
               <button
-                onClick={() => handleNavigation(<div>Chat Component</div>)} // Replace with actual component
+                onClick={() => handleNavigation(<div>Chat Component</div>)} 
                 className="flex items-center p-2 rounded hover:bg-blue-900 w-full text-left"
               >
                 <HiChat className="mr-3 text-xl" />
                 <span>Chat with students</span>
+              </button>
+            </li>
+            <li>
+              <button
+                onClick={() => handleNavigation(<GetFacultyProfile/>)}
+                className="flex items-center p-2 rounded hover:bg-blue-900 w-full text-left"
+              >
+                <HiChat className="mr-3 text-xl" />
+                <span>Profile</span>
               </button>
             </li>
             {/* Logout Button */}
@@ -120,9 +130,8 @@ const Sidebar: React.FC = () => {
           {showWelcomeMessage ? (
             <div className="flex justify-center items-center h-full ">
               <div className="p-4 w-full max-w-4xl text-center text-xl text-[#112d60]">
-                <div>
-                  <GetFacultyProfile/>
-                </div>
+              <h1 className="font-serif">Welcome to the Faculty Portal</h1>
+              <p>Select an option from the sidebar to get started.</p>
               </div>
             </div>
           ) : (
