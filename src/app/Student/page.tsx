@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from 'react';
-import { HiPlus, HiViewList, HiDocumentReport, HiEye, HiLogout, HiMenu, HiX, HiChat, HiMail } from 'react-icons/hi';
+import { HiPlus, HiViewList, HiDocumentReport, HiEye, HiLogout, HiMenu, HiX, HiUser, HiChat, HiMail } from 'react-icons/hi';
 import Layout from '../components/Layout'; // Ensure the Layout component is imported
 import EligiblityCriteria from '../components/EligiblityCriteria';
 import GetPostedInternship from '../components/GetData/GetPostedInternship';
@@ -8,7 +8,7 @@ import StudentInternshipApprovalForm from '../components/Forms/StudentInternship
 import ApplicationForRecommendationLetter from '../components/Forms/ApplicationForRecommendationLetter';
 import StudentInternshipProgressForm from '../components/Forms/StudentInternshipProgessForm';
 import StudentInternshipActivityLog from '../components/Forms/StudentInternshipActivityLog';
-
+import GetStudentProfile from '../components/Profile/GetStudentProfile'
 
 const StudentSidebar: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false); 
@@ -88,6 +88,15 @@ const StudentSidebar: React.FC = () => {
               >
                 <HiChat className="mr-3 text-xl" />
                 <span>Chat With Supervisors</span>
+              </button>
+            </li>
+            <li>
+              <button
+                onClick={() => handleNavigation(<GetStudentProfile/>)} 
+                className="flex items-center p-2 rounded hover:bg-blue-900 w-full text-left"
+              >
+                <HiUser className="mr-3 text-xl" />
+                <span>Profile</span>
               </button>
             </li>
             <li>
